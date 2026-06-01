@@ -1,5 +1,5 @@
 export { TraceDag } from './TraceDag.js';
-export type { TraceDagProps } from './TraceDag.js';
+export type { TraceDagProps, TraceDagSelection } from './TraceDag.js';
 
 export { layoutDag } from './layout.js';
 export type { LayoutResult } from './layout.js';

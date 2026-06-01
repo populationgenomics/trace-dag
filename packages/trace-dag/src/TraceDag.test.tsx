@@ -66,6 +66,99 @@ describe('TraceDag', () => {
     expect(onNodeClick.mock.calls[0][0]).toHaveProperty('layer');
   });
 
+  // a -> b, a -> c ; d is unrelated.
+  const GRAPH = [
+    node('a'), node('b', ['a']), node('c', ['a']), node('d'),
+  ];
+  const boxGroup = (container: HTMLElement, label: string) =>
+    [...container.querySelectorAll('text')]
+      .find((el) => el.textContent === label)?.closest('g') ?? null;
+  const visibleEdges = (container: HTMLElement) =>
+    [...container.querySelectorAll('path')]
+      .filter((p) => p.getAttribute('stroke') !== 'transparent');
+
+  describe('selection', () => {
+    it('draws everything at normal emphasis with no selection', () => {
+      const { container } = render(<TraceDag nodes={GRAPH} />);
+      expect(boxGroup(container, 'a')!.getAttribute('opacity')).toBe('1');
+      for (const e of visibleEdges(container)) {
+        expect(e.getAttribute('opacity')).toBe('0.85');
+      }
+    });
+
+    it('selecting a node highlights it, dims unrelated, semi-dims neighbours', () => {
+      const { container } = render(<TraceDag nodes={GRAPH} />);
+      fireEvent.click(screen.getByText('a'));
+      expect(boxGroup(container, 'a')!.getAttribute('opacity')).toBe('1');   // primary
+      expect(boxGroup(container, 'b')!.getAttribute('opacity')).toBe('0.6'); // neighbour
+      expect(boxGroup(container, 'c')!.getAttribute('opacity')).toBe('0.6'); // neighbour
+      expect(boxGroup(container, 'd')!.getAttribute('opacity')).toBe('0.15'); // dim
+    });
+
+    it('emphasises a selected node incident edges and dims the rest', () => {
+      // Add an unrelated edge d->e so there is an edge to dim.
+      const g = [...GRAPH, node('e', ['d'])];
+      const { container } = render(<TraceDag nodes={g} />);
+      fireEvent.click(screen.getByText('a'));
+      const ops = visibleEdges(container).map((p) => p.getAttribute('opacity'));
+      expect(ops.filter((o) => o === '1')).toHaveLength(2);    // a->b, a->c
+      expect(ops.filter((o) => o === '0.12')).toHaveLength(1); // d->e
+    });
+
+    it('selecting an edge highlights both endpoint nodes', () => {
+      const { container } = render(<TraceDag nodes={GRAPH} />);
+      // The first visible edge is a->b; click its transparent hit path.
+      const hit = [...container.querySelectorAll('path')]
+        .find((p) => p.getAttribute('stroke') === 'transparent')!;
+      fireEvent.click(hit);
+      expect(boxGroup(container, 'a')!.getAttribute('opacity')).toBe('1');
+      expect(boxGroup(container, 'b')!.getAttribute('opacity')).toBe('1');
+      expect(boxGroup(container, 'd')!.getAttribute('opacity')).toBe('0.15');
+    });
+
+    it('re-clicking the selection clears it', () => {
+      const { container } = render(<TraceDag nodes={GRAPH} />);
+      fireEvent.click(screen.getByText('a'));
+      expect(boxGroup(container, 'd')!.getAttribute('opacity')).toBe('0.15');
+      fireEvent.click(screen.getByText('a'));
+      expect(boxGroup(container, 'd')!.getAttribute('opacity')).toBe('1');
+    });
+
+    it('clicking the background clears the selection', () => {
+      const { container } = render(<TraceDag nodes={GRAPH} />);
+      fireEvent.click(screen.getByText('a'));
+      fireEvent.click(container.querySelector('svg')!);
+      expect(boxGroup(container, 'd')!.getAttribute('opacity')).toBe('1');
+    });
+
+    it('notifies onSelectionChange and onEdgeClick', () => {
+      const onSelectionChange = vi.fn();
+      const onEdgeClick = vi.fn();
+      const { container } = render(
+        <TraceDag nodes={GRAPH}
+          onSelectionChange={onSelectionChange} onEdgeClick={onEdgeClick} />,
+      );
+      fireEvent.click(screen.getByText('a'));
+      expect(onSelectionChange).toHaveBeenLastCalledWith({ kind: 'node', id: 'a' });
+      const hit = [...container.querySelectorAll('path')]
+        .find((p) => p.getAttribute('stroke') === 'transparent')!;
+      fireEvent.click(hit);
+      expect(onEdgeClick).toHaveBeenCalledOnce();
+      expect(onSelectionChange).toHaveBeenLastCalledWith(
+        { kind: 'edge', from: 'a', to: 'b' },
+      );
+    });
+
+    it('does not highlight or expose hit paths when selectable=false', () => {
+      const { container } = render(<TraceDag nodes={GRAPH} selectable={false} />);
+      fireEvent.click(screen.getByText('a'));
+      expect(boxGroup(container, 'd')!.getAttribute('opacity')).toBe('1');
+      const hit = [...container.querySelectorAll('path')]
+        .find((p) => p.getAttribute('stroke') === 'transparent');
+      expect(hit).toBeUndefined();
+    });
+  });
+
   it('renders tooltips as svg <title> elements', () => {
     const { container } = render(
       <TraceDag nodes={[node('a', [], { tooltip: 'hover me' })]} />,
