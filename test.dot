@@ -1,0 +1,228 @@
+digraph lineage {
+  rankdir=TB;
+  node [shape=box, style="rounded,filled", fontname="monospace", fontsize=10, fillcolor="white"];
+  edge [color="#888888"];
+
+  // round 0
+  { rank=same;
+    "synth_list_batches_0" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="list_batches: "];
+    "list_05849d21c773_000000" [label="sem\\npathogenic promoter variant Mendelian…", color="#1f77b4", penwidth=1.5, tooltip="semantic_search: query=pathogenic promoter variant Mendelian disease c…, k=100"];
+    "list_05849d21c773_000001" [label="sem\\n5' UTR regulatory variant causing inh…", color="#1f77b4", penwidth=1.5, tooltip="semantic_search: query=5' UTR regulatory variant causing inherited dis…, k=100"];
+  }
+  // round 1
+  { rank=same;
+    "list_05849d21c773_000002" [label="sem\\nenhancer variant rare disease patient", color="#1f77b4", penwidth=1.5, tooltip="semantic_search: query=enhancer variant rare disease patient, k=100"];
+    "list_05849d21c773_000003" [label="sem\\nnoncoding regulatory mutation Mendeli…", color="#1f77b4", penwidth=1.5, tooltip="semantic_search: query=noncoding regulatory mutation Mendelian disorder, k=100"];
+    "synth_inspect_summary_1" [label="inspect_summary", color="#9467bd", penwidth=1.5, tooltip="inspect_summary: list_id=list_05849d21c773_000000"];
+  }
+  // round 2
+  { rank=same;
+    "synth_phrase_extensions_2" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="phrase_extensions: word=promoter"];
+    "synth_phrase_extensions_3" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="phrase_extensions: word=enhancer"];
+    "synth_phrase_extensions_4" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="phrase_extensions: word=regulatory"];
+    "synth_phrase_extensions_5" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="phrase_extensions: word=noncoding"];
+  }
+  // round 3
+  { rank=same;
+    "synth_phrase_extensions_6" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="phrase_extensions: word=pathogenic"];
+    "synth_phrase_extensions_7" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="phrase_extensions: word=UTR"];
+    "synth_count_term_8" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=promoter variant"];
+    "synth_count_term_9" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=promoter mutation"];
+    "synth_count_term_10" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=enhancer variant"];
+    "synth_count_term_11" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=enhancer mutation"];
+    "synth_count_term_12" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=regulatory variant"];
+    "synth_count_term_13" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=regulatory mutation"];
+  }
+  // round 4
+  { rank=same;
+    "synth_count_term_14" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=5'UTR variant"];
+    "synth_count_term_15" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=upstream open reading frame"];
+    "synth_count_term_16" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=case report"];
+    "synth_count_term_17" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=Mendelian"];
+    "synth_count_term_18" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=autosomal recessive"];
+    "synth_count_term_19" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=autosomal dominant"];
+    "synth_count_term_20" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=noncoding variant"];
+    "synth_count_term_21" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="count_term: term=non-coding variant"];
+  }
+  // round 5
+  { rank=same;
+    "list_05849d21c773_000004" [label="filt\\npromoter variant | promoter mutation | enhancer variant… ∧ Mendelian | autosomal recessive | autosomal dominant…", color="#1f77b4", penwidth=1.5, tooltip="filter_search: filter_expr=promoter variant | promoter mutation | enhancer variant… ∧ Mendelian | autosomal recessive | autosomal dominant…"];
+  }
+  // round 6
+  { rank=same;
+    "list_05849d21c773_000005" [label="sem\\ncase report regulatory variant promot…", color="#1f77b4", penwidth=1.5, tooltip="semantic_search: query=case report regulatory variant promoter enhance…, k=200, within=list_05849d21c773_000004"];
+    "list_05849d21c773_000006" [label="filt\\npromoter mutation | promoter variant | promoter region mutation… ∧ proband | case report | patient with…", color="#1f77b4", penwidth=1.5, tooltip="filter_search: filter_expr=promoter mutation | promoter variant | promoter region mutation… ∧ proband | case report | patient with…"];
+  }
+  // round 7
+  { rank=same;
+    "synth_inspect_summary_22" [label="inspect_summary", color="#9467bd", penwidth=1.5, tooltip="inspect_summary: list_id=list_05849d21c773_000005"];
+  }
+  // round 8
+  { rank=same;
+    "batch_082de80ef570" [label="eval\\nlist_05849d21c773_000005", color="#d62728", penwidth=1.5, tooltip="evaluate_batch: list_id=list_05849d21c773_000005, start=0, end=50"];
+    "list_05849d21c773_000007" [label="sem\\n5' UTR uORF variant inherited disorde…", color="#1f77b4", penwidth=1.5, tooltip="semantic_search: query=5' UTR uORF variant inherited disorder family, k=200, within=list_05849d21c773_000004"];
+    "list_05849d21c773_000008" [label="sem\\nenhancer point mutation congenital sy…", color="#1f77b4", penwidth=1.5, tooltip="semantic_search: query=enhancer point mutation congenital syndrome, k=100"];
+  }
+  // round 9
+  { rank=same;
+    "synth_inspect_summary_23" [label="inspect_summary", color="#9467bd", penwidth=1.5, tooltip="inspect_summary: list_id=list_05849d21c773_000007"];
+    "synth_inspect_summary_24" [label="inspect_summary", color="#9467bd", penwidth=1.5, tooltip="inspect_summary: list_id=list_05849d21c773_000008"];
+    "list_05849d21c773_000009" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#d62728", color="#d62728", tooltip="batch_info: batch_id=batch_943169b61442"];
+  }
+  // round 10
+  { rank=same;
+    "batch_2935a835bbbf" [label="eval\\nlist_05849d21c773_000007", color="#d62728", penwidth=1.5, tooltip="evaluate_batch: list_id=list_05849d21c773_000007, start=0, end=50"];
+    "batch_1da1520bc3eb" [label="eval\\nlist_05849d21c773_000005", color="#d62728", penwidth=1.5, tooltip="evaluate_batch: list_id=list_05849d21c773_000005, start=50, end=100"];
+  }
+  // round 11
+  { rank=same;
+    "list_05849d21c773_000010" [label="filt\\nenhancer mutation | enhancer variant | limb enhancer… ∧ case report | patient | proband…", color="#1f77b4", penwidth=1.5, tooltip="filter_search: filter_expr=enhancer mutation | enhancer variant | limb enhancer… ∧ case report | patient | proband…"];
+    "list_05849d21c773_000011" [label="filt\\n5' UTR | 5'UTR | 5'-UTR… ∧ pathogenic | case report | proband…", color="#1f77b4", penwidth=1.5, tooltip="filter_search: filter_expr=5' UTR | 5'UTR | 5'-UTR… ∧ pathogenic | case report | proband…"];
+  }
+  // round 12
+  { rank=same;
+    "list_05849d21c773_000012" [label="sem\\nenhancer mutation Mendelian disease p…", color="#1f77b4", penwidth=1.5, tooltip="semantic_search: query=enhancer mutation Mendelian disease patient family, k=200, within=list_05849d21c773_000010"];
+    "list_05849d21c773_000013" [label="sem\\n5' UTR uORF pathogenic variant inheri…", color="#1f77b4", penwidth=1.5, tooltip="semantic_search: query=5' UTR uORF pathogenic variant inherited disease, k=200, within=list_05849d21c773_000011"];
+  }
+  // round 13
+  { rank=same;
+    "synth_inspect_summary_25" [label="inspect_summary", color="#9467bd", penwidth=1.5, tooltip="inspect_summary: list_id=list_05849d21c773_000012"];
+    "synth_inspect_summary_26" [label="inspect_summary", color="#9467bd", penwidth=1.5, tooltip="inspect_summary: list_id=list_05849d21c773_000013"];
+  }
+  // round 14
+  { rank=same;
+    "batch_f5030daee5fd" [label="eval\\nlist_05849d21c773_000013", color="#d62728", penwidth=1.5, tooltip="evaluate_batch: list_id=list_05849d21c773_000013, start=0, end=50"];
+    "batch_19f4fb96a308" [label="eval\\nlist_05849d21c773_000012", color="#d62728", penwidth=1.5, tooltip="evaluate_batch: list_id=list_05849d21c773_000012, start=0, end=50"];
+    "list_05849d21c773_000014" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#d62728", color="#d62728", tooltip="batch_info: batch_id=batch_082de80ef570"];
+  }
+  // round 15
+  { rank=same;
+    "list_05849d21c773_000015" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#d62728", color="#d62728", tooltip="batch_info: batch_id=batch_2935a835bbbf"];
+    "list_05849d21c773_000016" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#d62728", color="#d62728", tooltip="batch_info: batch_id=batch_1da1520bc3eb"];
+  }
+  // round 16
+  { rank=same;
+    "list_05849d21c773_000017" [label="∪", color="#ff7f0e", penwidth=1.5, tooltip="list_union: lists=[3]"];
+  }
+  // round 17
+  { rank=same;
+    "synth_list_inspect_27" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#9467bd", color="#9467bd", tooltip="list_inspect: list_id=list_05849d21c773_000017, start=0, end=20, fields=[2]"];
+  }
+  // round 18
+  { rank=same;
+    "list_05849d21c773_000018" [label="LR\\nk=200", color="#2ca02c", penwidth=1.5, tooltip="fit_and_rank: training_batches=[4], k=200"];
+    "list_05849d21c773_000019" [label="sim", color="#1f77b4", penwidth=1.5, tooltip="similar_to: seed_gids=[8], k=200"];
+  }
+  // round 19
+  { rank=same;
+    "list_05849d21c773_000020" [label="filter_to_unevaluated", color="#9467bd", penwidth=1.5, tooltip="filter_to_unevaluated: list_id=list_05849d21c773_000018"];
+    "list_05849d21c773_000021" [label="filter_to_unevaluated", color="#9467bd", penwidth=1.5, tooltip="filter_to_unevaluated: list_id=list_05849d21c773_000019"];
+  }
+  // round 20
+  { rank=same;
+    "synth_inspect_summary_28" [label="inspect_summary", color="#9467bd", penwidth=1.5, tooltip="inspect_summary: list_id=list_05849d21c773_000020"];
+    "synth_inspect_summary_29" [label="inspect_summary", color="#9467bd", penwidth=1.5, tooltip="inspect_summary: list_id=list_05849d21c773_000021"];
+  }
+  // round 21
+  { rank=same;
+    "batch_6e314c5681bf" [label="eval\\nlist_05849d21c773_000021", color="#d62728", penwidth=1.5, tooltip="evaluate_batch: list_id=list_05849d21c773_000021, start=0, end=50"];
+    "batch_a54e8b4db404" [label="eval\\nlist_05849d21c773_000020", color="#d62728", penwidth=1.5, tooltip="evaluate_batch: list_id=list_05849d21c773_000020, start=0, end=50"];
+  }
+  // round 22
+  { rank=same;
+    "list_05849d21c773_000022" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#d62728", color="#d62728", tooltip="batch_info: batch_id=batch_f5030daee5fd"];
+    "list_05849d21c773_000023" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#d62728", color="#d62728", tooltip="batch_info: batch_id=batch_19f4fb96a308"];
+  }
+  // round 23
+  { rank=same;
+    "list_05849d21c773_000024" [label="filter_to_unevaluated", color="#9467bd", penwidth=1.5, tooltip="filter_to_unevaluated: list_id=list_05849d21c773_000013"];
+    "list_05849d21c773_000025" [label="filter_to_unevaluated", color="#9467bd", penwidth=1.5, tooltip="filter_to_unevaluated: list_id=list_05849d21c773_000007"];
+    "list_05849d21c773_000026" [label="filter_to_unevaluated", color="#9467bd", penwidth=1.5, tooltip="filter_to_unevaluated: list_id=list_05849d21c773_000005"];
+  }
+  // round 24
+  { rank=same;
+    "batch_c1fae079dbc4" [label="eval\\nlist_05849d21c773_000024", color="#d62728", penwidth=1.5, tooltip="evaluate_batch: list_id=list_05849d21c773_000024, start=0, end=50"];
+    "batch_7710cdbb30c0" [label="eval\\nlist_05849d21c773_000025", color="#d62728", penwidth=1.5, tooltip="evaluate_batch: list_id=list_05849d21c773_000025, start=0, end=50"];
+  }
+  // round 25
+  { rank=same;
+    "list_05849d21c773_000027" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#d62728", color="#d62728", tooltip="batch_info: batch_id=batch_6e314c5681bf"];
+    "list_05849d21c773_000028" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#d62728", color="#d62728", tooltip="batch_info: batch_id=batch_a54e8b4db404"];
+  }
+  // round 26
+  { rank=same;
+    "list_05849d21c773_000029" [label="LR\\nk=200", color="#2ca02c", penwidth=1.5, tooltip="fit_and_rank: training_batches=[8], k=200"];
+  }
+  // round 27
+  { rank=same;
+    "list_05849d21c773_000030" [label="filter_to_unevaluated", color="#9467bd", penwidth=1.5, tooltip="filter_to_unevaluated: list_id=list_05849d21c773_000029"];
+  }
+  // round 28
+  { rank=same;
+    "synth_inspect_summary_30" [label="inspect_summary", color="#9467bd", penwidth=1.5, tooltip="inspect_summary: list_id=list_05849d21c773_000030"];
+  }
+  // round 29
+  { rank=same;
+    "batch_d314073d6d19" [label="eval\\nlist_05849d21c773_000030", color="#d62728", penwidth=1.5, tooltip="evaluate_batch: list_id=list_05849d21c773_000030, start=0, end=50"];
+  }
+  // round 30
+  { rank=same;
+    "synth_batch_info_31" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#d62728", color="#d62728", tooltip="batch_info: batch_id=batch_c1fae079dbc4, _synthetic_rollup=true"];
+    "synth_batch_info_32" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#d62728", color="#d62728", tooltip="batch_info: batch_id=batch_7710cdbb30c0, _synthetic_rollup=true"];
+    "synth_batch_info_33" [shape=circle, label="", width=0.18, height=0.18, fillcolor="#d62728", color="#d62728", tooltip="batch_info: batch_id=batch_d314073d6d19, _synthetic_rollup=true"];
+  }
+
+  "list_05849d21c773_000000" -> "synth_inspect_summary_1" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000004" -> "list_05849d21c773_000005" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000005" -> "synth_inspect_summary_22" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000005" -> "batch_082de80ef570" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000004" -> "list_05849d21c773_000007" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000007" -> "synth_inspect_summary_23" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000008" -> "synth_inspect_summary_24" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000007" -> "batch_2935a835bbbf" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000005" -> "batch_1da1520bc3eb" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000010" -> "list_05849d21c773_000012" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000011" -> "list_05849d21c773_000013" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000012" -> "synth_inspect_summary_25" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000013" -> "synth_inspect_summary_26" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000013" -> "batch_f5030daee5fd" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000012" -> "batch_19f4fb96a308" [color="#1f77b4", style=solid];
+  "batch_082de80ef570" -> "list_05849d21c773_000014" [color="#d62728", style=dashed];
+  "batch_2935a835bbbf" -> "list_05849d21c773_000015" [color="#d62728", style=dashed];
+  "batch_1da1520bc3eb" -> "list_05849d21c773_000016" [color="#d62728", style=dashed];
+  "list_05849d21c773_000014" -> "list_05849d21c773_000017" [color="#d62728", style=solid];
+  "list_05849d21c773_000015" -> "list_05849d21c773_000017" [color="#d62728", style=solid];
+  "list_05849d21c773_000016" -> "list_05849d21c773_000017" [color="#d62728", style=solid];
+  "list_05849d21c773_000017" -> "synth_list_inspect_27" [color="#ff7f0e", style=dashed];
+  "batch_082de80ef570" -> "list_05849d21c773_000018" [color="#d62728", style=solid];
+  "batch_2935a835bbbf" -> "list_05849d21c773_000018" [color="#d62728", style=solid];
+  "batch_1da1520bc3eb" -> "list_05849d21c773_000018" [color="#d62728", style=solid];
+  "list_05849d21c773_000018" -> "list_05849d21c773_000020" [color="#2ca02c", style=solid];
+  "list_05849d21c773_000019" -> "list_05849d21c773_000021" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000020" -> "synth_inspect_summary_28" [color="#9467bd", style=solid];
+  "list_05849d21c773_000021" -> "synth_inspect_summary_29" [color="#9467bd", style=solid];
+  "list_05849d21c773_000021" -> "batch_6e314c5681bf" [color="#9467bd", style=solid];
+  "list_05849d21c773_000020" -> "batch_a54e8b4db404" [color="#9467bd", style=solid];
+  "batch_f5030daee5fd" -> "list_05849d21c773_000022" [color="#d62728", style=dashed];
+  "batch_19f4fb96a308" -> "list_05849d21c773_000023" [color="#d62728", style=dashed];
+  "list_05849d21c773_000013" -> "list_05849d21c773_000024" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000007" -> "list_05849d21c773_000025" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000005" -> "list_05849d21c773_000026" [color="#1f77b4", style=solid];
+  "list_05849d21c773_000024" -> "batch_c1fae079dbc4" [color="#9467bd", style=solid];
+  "list_05849d21c773_000025" -> "batch_7710cdbb30c0" [color="#9467bd", style=solid];
+  "batch_6e314c5681bf" -> "list_05849d21c773_000027" [color="#d62728", style=dashed];
+  "batch_a54e8b4db404" -> "list_05849d21c773_000028" [color="#d62728", style=dashed];
+  "batch_082de80ef570" -> "list_05849d21c773_000029" [color="#d62728", style=solid];
+  "batch_2935a835bbbf" -> "list_05849d21c773_000029" [color="#d62728", style=solid];
+  "batch_1da1520bc3eb" -> "list_05849d21c773_000029" [color="#d62728", style=solid];
+  "batch_f5030daee5fd" -> "list_05849d21c773_000029" [color="#d62728", style=solid];
+  "batch_19f4fb96a308" -> "list_05849d21c773_000029" [color="#d62728", style=solid];
+  "batch_6e314c5681bf" -> "list_05849d21c773_000029" [color="#d62728", style=solid];
+  "batch_a54e8b4db404" -> "list_05849d21c773_000029" [color="#d62728", style=solid];
+  "list_05849d21c773_000029" -> "list_05849d21c773_000030" [color="#2ca02c", style=solid];
+  "list_05849d21c773_000030" -> "synth_inspect_summary_30" [color="#9467bd", style=solid];
+  "list_05849d21c773_000030" -> "batch_d314073d6d19" [color="#9467bd", style=solid];
+  "batch_c1fae079dbc4" -> "synth_batch_info_31" [color="#d62728", style=dashed];
+  "batch_7710cdbb30c0" -> "synth_batch_info_32" [color="#d62728", style=dashed];
+  "batch_d314073d6d19" -> "synth_batch_info_33" [color="#d62728", style=dashed];
+}
