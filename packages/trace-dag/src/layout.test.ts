@@ -158,6 +158,66 @@ describe('layoutDag — geometry & positioning', () => {
   });
 });
 
+describe('layoutDag — isolated nodes', () => {
+  it('keeps a lone isolated node on layer 0', () => {
+    const l = layers([node('a')]);
+    expect(l.get('a')).toBe(0);
+  });
+
+  it('grid-packs edge-free nodes into a block below the connected flow', () => {
+    // A 2-layer flow (a -> b) plus several isolated nodes.  The isolated
+    // block must sit strictly below the flow's deepest layer.
+    const iso = ['i0', 'i1', 'i2', 'i3', 'i4'].map((id) =>
+      node(id, [], { shape: 'circle' }));
+    const { nodes } = layoutDag([node('a'), node('b', ['a']), ...iso], GEOM);
+    const flowMaxCy = Math.max(
+      nodes.find((n) => n.id === 'a')!.cy,
+      nodes.find((n) => n.id === 'b')!.cy,
+    );
+    for (const id of ['i0', 'i1', 'i2', 'i3', 'i4']) {
+      expect(nodes.find((n) => n.id === id)!.cy).toBeGreaterThan(flowMaxCy);
+    }
+  });
+
+  it('packs isolated nodes into multiple rows rather than one wide row', () => {
+    // 9 isolated nodes -> ceil(sqrt(9)) = 3 columns, so >1 distinct cy.
+    const iso = Array.from({ length: 9 }, (_, i) =>
+      node(`i${i}`, [], { shape: 'circle' }));
+    const { nodes } = layoutDag(iso, GEOM);
+    const distinctRows = new Set(nodes.map((n) => n.cy));
+    expect(distinctRows.size).toBeGreaterThan(1);
+  });
+
+  it('does not let isolated nodes dominate width', () => {
+    // Many isolated nodes should grid-wrap, not exceed a narrow connected
+    // flow by a huge margin.
+    const iso = Array.from({ length: 25 }, (_, i) =>
+      node(`i${i}`, [], { shape: 'circle' }));
+    const wide = layoutDag(iso, GEOM).width;
+    // 25 circles wrapped at 5 cols ~ 5 * (circleWidth + gap); nowhere near
+    // 25 in a single row.
+    expect(wide).toBeLessThan(25 * (GEOM.circleWidth + GEOM.gap) / 2);
+  });
+});
+
+describe('layoutDag — compaction', () => {
+  it('does not waste horizontal space beyond the widest layer', () => {
+    // Three independent two-node chains.  Optimal width is one chain's
+    // footprint times three plus gaps — the layout must not balloon far
+    // past the widest layer's minimum.
+    const input = [
+      node('a0'), node('a1', ['a0']),
+      node('b0'), node('b1', ['b0']),
+      node('c0'), node('c1', ['c0']),
+    ];
+    const r = layoutDag(input, GEOM);
+    const widest = 3 * GEOM.boxWidth + 2 * GEOM.gap; // 3 nodes on a layer
+    const minWidth = widest + GEOM.padding.l + GEOM.padding.r;
+    // Allow slack for centring, but not a 1.5x blow-out.
+    expect(r.width).toBeLessThan(minWidth * 1.5);
+  });
+});
+
 describe('layoutDag — crossing minimisation', () => {
   it('orders children under their parents to reduce crossings', () => {
     // Two parents p0, p1 on layer 0.  Children deliberately fed in an
