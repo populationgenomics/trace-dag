@@ -1,0 +1,51 @@
+{
+  "name": "@populationgenomics/trace-dag",
+  "version": "0.1.0",
+  "description": "Layered DAG visualisation as SVG, with Sugiyama-style crossing minimisation, variable-width packing, and Graphviz/DOT export.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "vite build && tsc -b --force",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0 <20.0.0",
+    "react-dom": ">=18.0.0 <20.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.2.12",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "jsdom": "^28.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.4",
+    "vitest": "^4.0.18"
+  },
+  "keywords": [
+    "dag",
+    "visualization",
+    "sugiyama",
+    "graphviz",
+    "react",
+    "svg"
+  ],
+  "license": "MIT",
+  "author": "Centre for Population Genomics"
+}

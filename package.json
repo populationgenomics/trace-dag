@@ -1,0 +1,22 @@
+{
+  "name": "trace-dag-workspace",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "tsc --build",
+    "test": "npm run test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.12",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
