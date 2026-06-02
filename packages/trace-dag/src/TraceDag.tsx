@@ -96,11 +96,11 @@ export function TraceDag({
   onSelectionChange,
   emptyMessage,
 }: TraceDagProps) {
-  const geom: TraceDagGeometry = {
+  const geom: TraceDagGeometry = useMemo(() => ({
     ...DEFAULT_GEOMETRY,
     ...geometry,
     padding: { ...DEFAULT_GEOMETRY.padding, ...geometry?.padding },
-  };
+  }), [geometry]);
 
   const layout = useMemo(() => layoutDag(nodes, geom), [nodes, geom]);
 
