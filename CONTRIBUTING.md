@@ -43,11 +43,14 @@ We use [Changesets](https://github.com/changesets/changesets).
 
 1. For any user-facing change, run `npm run changeset` and describe the change.
 2. Commit the generated `.changeset/*.md` file alongside the code change.
-3. On merge to `main`, the release workflow opens a "Version Packages" PR.
-4. Merging that PR publishes to npm.
+3. On merge to `main`, the release workflow opens a "Version Packages" PR that
+   bumps the version and updates [`CHANGELOG.md`](./CHANGELOG.md).
+4. Merging that PR records the release in-repo.
 
-Strict semver: additive features go in minor releases; breaking API changes
-require a major. See [`CHANGELOG.md`](./CHANGELOG.md).
+We do **not** publish to npm — consumers depend on the package via a git
+ref or [yalc](#cross-repo-iteration-using-trace-dag-from-a-consumer). Strict
+semver: additive features go in minor releases; breaking API changes require
+a major.
 
 ## Testing
 

@@ -1,5 +1,10 @@
 name: Release
 
+# We do not publish to npm.  This workflow only turns merged changesets
+# into a "Version Packages" PR that bumps versions and updates the
+# changelog; merging that PR tags the release in-repo.  No NPM_TOKEN, no
+# publish step — so it never fails on a missing registry credential.
+
 on:
   push:
     branches: [main]
@@ -12,7 +17,6 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -22,20 +26,17 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          registry-url: https://registry.npmjs.org
 
       - run: npm ci
 
       - name: Build
         run: npm run build
 
-      - name: Create release PR or publish
+      - name: Create or update the Version Packages PR
         uses: changesets/action@v1
         with:
-          publish: npm run release
           version: npm run version-packages
           commit: 'chore: version packages'
           title: 'chore: version packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
